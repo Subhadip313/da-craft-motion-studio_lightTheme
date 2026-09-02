@@ -30,7 +30,7 @@ export function Reveal({
     }
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setVisible(true);
           io.disconnect();
         }
@@ -178,7 +178,7 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
     if (!el || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e?.isIntersecting) {
           setActive(true);
           io.disconnect();
         }
