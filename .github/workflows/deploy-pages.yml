@@ -33,15 +33,12 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          GITHUB_ACTIONS: "true"
-
-      - name: Prepare Pages artifact
-        run: node scripts/prepare-pages.cjs
+          GITHUB_PAGES: "true"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .output/public
+          path: dist/client
 
   deploy:
     needs: build
