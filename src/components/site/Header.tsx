@@ -50,15 +50,13 @@ export function Header() {
       )}
     >
       <div className="container-editorial flex h-[72px] items-center justify-between gap-6">
-        <Link to="/" className="group flex items-center gap-3" aria-label="Da Craft Motion — home">
-          <img
-            src={logoPrimary}
-            alt="Da Craft Motion"
-            width={160}
-            height={54}
-            className="h-11 w-auto md:h-12"
-          />
-          <span className="sr-only">{SITE.wordmark}</span>
+        <Link to="/" className="group flex flex-col leading-none" aria-label="Da Craft Motion — home">
+          <span className="font-display text-[0.95rem] font-bold tracking-[0.18em] text-ink md:text-base">
+            {SITE.wordmark}
+          </span>
+          <span className="mt-1 hidden text-[0.6rem] tracking-[0.28em] text-orange-dim sm:block">
+            {SITE.tagline.toUpperCase()}
+          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
