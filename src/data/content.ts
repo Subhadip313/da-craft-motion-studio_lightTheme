@@ -44,6 +44,14 @@ export const IMAGES = {
   indRestaurant,
 };
 
+export const HERO_MEDIA = {
+  type: "image" as "image" | "video",
+  src: heroStudio,
+  alt: "Da Craft Motion crew preparing a creative shoot in the studio",
+  videoSrc: "",
+  poster: heroStudio,
+};
+
 /* ---------------------------------------------------------------- services */
 
 export type HomeService = {

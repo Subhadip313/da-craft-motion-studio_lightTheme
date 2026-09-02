@@ -9,6 +9,7 @@ import {
   TrustedMarquee,
 } from "@/components/site/primitives";
 import {
+  HERO_MEDIA,
   HOME_INDUSTRIES,
   HOME_SERVICES,
   IMAGES,
@@ -18,6 +19,32 @@ import {
   WHY_US,
 } from "@/data/content";
 import { SITE, localBusinessJsonLd } from "@/lib/site";
+
+function HeroMedia() {
+  if (HERO_MEDIA.type === "video" && HERO_MEDIA.videoSrc) {
+    return (
+      <video
+        src={HERO_MEDIA.videoSrc}
+        poster={HERO_MEDIA.poster}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      />
+    );
+  }
+
+  return (
+    <img
+      src={HERO_MEDIA.src}
+      alt={HERO_MEDIA.alt}
+      className="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      width={1200}
+      height={1500}
+    />
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,30 +73,47 @@ function Home() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-cream pt-[72px]">
-        <div className="container-editorial grid items-center gap-12 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative overflow-hidden bg-[#f5ead7] pt-[72px]">
+        <div className="absolute left-[-10%] top-[8%] h-80 w-80 rounded-full bg-[#f3d8b9]/60 blur-3xl" />
+        <div className="absolute right-[8%] bottom-[10%] h-72 w-72 rounded-full bg-[#e7d8c8]/60 blur-3xl" />
+
+        <div className="container-editorial relative grid items-center gap-10 py-16 md:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
           <Reveal>
-            <p className="eyebrow">Kolkata creative studio</p>
-            <h1 className="display-xl mt-5 text-ink">
-              Create. Inspire. <span className="text-orange">Elevate.</span>
+            <p className="eyebrow text-orange-dim">Full-service creative agency</p>
+            <h1 className="hero-display mt-5 max-w-[660px] text-ink">
+              Creative
+              <br className="hidden md:block" />
+              content
+              <br className="hidden md:block" />
+              that <span className="hero-script text-orange">grows</span>
+              <br className="hidden md:block" />
+              your brand
             </h1>
-            <p className="lede mt-6 max-w-xl">
-              {SITE.name} is a full-service creative agency building photography, film, brand
-              systems and social content that make ambitious brands impossible to ignore.
+            <p className="lede mt-6 max-w-xl text-ink-soft">
+              We help businesses stand out through photography, videography, branding, design and
+              social media content that drives engagement and delivers real business growth.
             </p>
-            <div className="mt-9">
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <CTAButtons />
             </div>
+            <div className="mt-12 inline-flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-ink-soft">
+              <span className="inline-block -translate-y-[1px] text-orange">↓</span>
+              Scroll
+            </div>
           </Reveal>
+
           <Reveal delay={120}>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lift">
-              <img
-                src={IMAGES.heroStudio}
-                alt="Da Craft Motion crew lighting a set inside the Kolkata studio"
-                className="size-full object-cover"
-                width={1200}
-                height={1500}
-              />
+            <div className="hero-scene relative mx-auto w-full max-w-[620px]">
+              <div className="absolute left-[8%] top-[12%] h-[38%] w-[38%] rounded-[26%] bg-[#eadcc6]/70 blur-[2px]" />
+              <div className="absolute right-[4%] top-[12%] h-[42%] w-[42%] rotate-12 rounded-[24px] bg-[#d5cabd]/70 shadow-soft" />
+              <div className="absolute bottom-[8%] left-[12%] h-[30%] w-[30%] rotate-[-18deg] rounded-[24px] bg-[#d7cfc2]/70" />
+              <div className="absolute inset-[6%] rounded-[40px] border border-ink/5 bg-white/10 backdrop-blur-[1px]" />
+
+              <div className="hero-panel group relative mx-auto aspect-[4/4.8] w-full overflow-hidden rounded-[30px] border border-ink/10 bg-[#f5efe7] shadow-[0_30px_80px_-42px_rgba(43,36,28,0.55)]">
+                <div className="hero-media-wrap relative size-full overflow-hidden">
+                  <HeroMedia />
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -86,16 +130,25 @@ function Home() {
           />
           <ul className="mt-14 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {HOME_SERVICES.map((s, i) => (
-              <Reveal as="li" key={s.anchor} delay={i * 60} className="bg-white p-7">
+              <Reveal
+                as="li"
+                key={s.anchor}
+                delay={i * 60}
+                className="group relative overflow-hidden border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-orange hover:shadow-soft"
+              >
+                <div className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-orange transition-transform duration-300 group-hover:scale-x-100" />
                 <p className="font-display text-sm font-bold text-orange">{s.num}</p>
-                <h3 className="mt-4 font-display text-xl font-bold text-ink">{s.title}</h3>
+                <h3 className="mt-4 font-display text-xl font-bold text-ink transition-colors duration-300 group-hover:text-orange-dim">
+                  {s.title}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">{s.blurb}</p>
                 <Link
                   to="/services"
                   hash={s.anchor}
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-orange-dim hover:gap-3"
+                  className="link-draw mt-5 inline-flex items-center gap-2 text-sm font-semibold text-orange-dim"
                 >
                   Explore <ArrowRight className="size-4" aria-hidden="true" />
+                  <span className="link-draw-underline" />
                 </Link>
               </Reveal>
             ))}

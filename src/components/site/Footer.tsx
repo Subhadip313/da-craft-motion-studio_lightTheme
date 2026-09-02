@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUp } from "lucide-react";
+import logoMark from "@/assets/daCraftLogoLba.png";
 import { SITE } from "@/lib/site";
 
 const SERVICE_LINKS = [
@@ -27,7 +28,10 @@ export function Footer() {
       <div className="container-editorial py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
           <div>
-            <p className="font-display text-lg font-bold tracking-[0.16em]">{SITE.wordmark}</p>
+            <div className="flex items-center gap-3">
+              {/* <img src={logoMark} alt="Da Craft Motion logo" className="h-9 w-9 shrink-0 object-contain" /> */}
+              <p className="font-display text-lg font-bold tracking-[0.16em]">{SITE.wordmark}</p>
+            </div>
             <p className="mt-2 text-sm tracking-[0.2em] text-orange">{SITE.tagline}</p>
             <address className="mt-6 not-italic text-sm leading-relaxed text-cream/70">
               {SITE.address}

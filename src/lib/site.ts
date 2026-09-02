@@ -7,12 +7,12 @@ export const SITE = {
   wordmark: "DA CRAFT MOTION",
   tagline: "Create | Inspire | Elevate.",
   // TODO: replace placeholder phone number
-  phoneDisplay: "+91 90000 00000",
-  phoneHref: "tel:+919000000000",
+  phoneDisplay: "+91 98310 09951",
+  phoneHref: "tel:+919831009951",
   // TODO: replace placeholder email
-  email: "hello@dacraftmotion.com",
+  email: "dacraftmotionstudio@gmail.com",
   // TODO: replace placeholder WhatsApp number (international format, digits only)
-  whatsappNumber: "919000000000",
+  whatsappNumber: "919831009951",
   whatsappMessage: "Hi Da Craft Motion! I'd like to discuss a creative project.",
   address: "1/1, Baghajatin Station Road, Kolkata – 700032",
   hours: [
@@ -35,7 +35,7 @@ export const whatsappHref = `https://wa.me/${SITE.whatsappNumber}?text=${encodeU
  * Placeholder form endpoint. This static site does NOT send data anywhere.
  * Point this at a form service (Formspree, Basin, your own API) to go live.
  */
-export const FORM_ENDPOINT = "" as const; // e.g. "https://formspree.io/f/xxxxxxx"
+export const FORM_ENDPOINT = "https://formsubmit.co/ajax/dacraftmotionstudio@gmail.com" as const; // e.g. "https://formspree.io/f/xxxxxxx"
 
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",

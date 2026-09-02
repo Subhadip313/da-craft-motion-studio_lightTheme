@@ -1,8 +1,9 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "da-craft-motion-studio-lighttheme",
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "homepage": "https://subhadip313.github.io/da-craft-motion-studio_lightTheme/",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",

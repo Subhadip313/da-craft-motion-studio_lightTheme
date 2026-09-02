@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import logoMark from "@/assets/daCraftLogoLba.png";
 import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/site";
 import { btn } from "./primitives";
@@ -50,13 +51,16 @@ export function Header() {
       )}
     >
       <div className="container-editorial flex h-[72px] items-center justify-between gap-6">
-        <Link to="/" className="group flex flex-col leading-none" aria-label="Da Craft Motion — home">
-          <span className="font-display text-[0.95rem] font-bold tracking-[0.18em] text-ink md:text-base">
-            {SITE.wordmark}
-          </span>
-          <span className="mt-1 hidden text-[0.6rem] tracking-[0.28em] text-orange-dim sm:block">
-            {SITE.tagline.toUpperCase()}
-          </span>
+        <Link to="/" className="group flex items-center gap-3 leading-none" aria-label="Da Craft Motion — home">
+          {/* <img src={logoMark} alt="Da Craft Motion logo" className="h-8 w-8 shrink-0 object-contain md:h-9 md:w-9" /> */}
+          <div className="flex flex-col leading-none">
+            <span className="font-display text-[0.95rem] font-bold tracking-[0.18em] text-ink md:text-base">
+              {SITE.wordmark}
+            </span>
+            <span className="mt-1 hidden text-[0.6rem] tracking-[0.28em] text-orange-dim sm:block">
+              {SITE.tagline.toUpperCase()}
+            </span>
+          </div>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
