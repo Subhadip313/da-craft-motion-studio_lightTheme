@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import { FinalCTA, Reveal, StatsBand } from "@/components/site/primitives";
 import { TESTIMONIALS } from "@/data/content";
+import { TestimonialCarousel } from "@/components/site/TestimonialCarousel";
 
 export const Route = createFileRoute("/testimonials")({
   head: () => ({
@@ -32,6 +33,12 @@ function Testimonials() {
               working relationship.
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-cream" aria-label="Featured testimonial">
+        <div className="container-editorial pb-16 md:pb-24">
+          <TestimonialCarousel />
         </div>
       </section>
 
