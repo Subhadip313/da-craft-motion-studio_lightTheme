@@ -35,6 +35,9 @@ jobs:
         env:
           GITHUB_ACTIONS: "true"
 
+      - name: Prepare Pages artifact
+        run: node scripts/prepare-pages.cjs
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
