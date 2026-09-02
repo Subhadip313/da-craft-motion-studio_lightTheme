@@ -2,6 +2,14 @@
  * Central brand + contact configuration.
  * REPLACE THESE PLACEHOLDERS with the real business details before launch.
  */
+export const siteBasePath = (import.meta.env.BASE_URL ?? "/").replace(/\/+$/, "") || "/";
+
+export function siteHref(path = "/") {
+  const normalizedPath = path === "/" ? "/" : path.startsWith("/") ? path : `/${path}`;
+  if (siteBasePath === "/") return normalizedPath;
+  return `${siteBasePath}${normalizedPath === "/" ? "" : normalizedPath}`;
+}
+
 export const SITE = {
   name: "Da Craft Motion",
   wordmark: "DA CRAFT MOTION",
