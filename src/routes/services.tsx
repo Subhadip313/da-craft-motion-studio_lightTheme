@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalCTA, Reveal, SectionHeading } from "@/components/site/primitives";
+import { Accordion } from "@/components/site/Accordion";
 import { SERVICES } from "@/data/content";
 
 export const Route = createFileRoute("/services")({
@@ -83,14 +84,12 @@ function Services() {
                   </div>
                 ))}
               </div>
-              <dl className="mt-8 space-y-4">
-                {s.faqs.map((f) => (
-                  <div key={f.q} className="rounded-sm border border-line bg-white p-5">
-                    <dt className="font-display text-base font-bold text-ink">{f.q}</dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-ink-soft">{f.a}</dd>
-                  </div>
-                ))}
-              </dl>
+              <div className="mt-8">
+                <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-ink">
+                  Common questions
+                </h3>
+                <Accordion items={s.faqs} />
+              </div>
             </Reveal>
           </div>
         </section>
