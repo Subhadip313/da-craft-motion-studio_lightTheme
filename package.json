@@ -6,8 +6,8 @@
   "homepage": "https://subhadip313.github.io/da-craft-motion-studio_lightTheme/",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && node scripts/prepare-pages.cjs",
-    "build:dev": "vite build --mode development && node scripts/prepare-pages.cjs",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
