@@ -2,29 +2,32 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const outDir = path.join(root, '.output', 'public');
+const outDir = path.join(root, 'dist', 'client');
 const assetsDir = path.join(outDir, 'assets');
 
 if (!fs.existsSync(outDir)) {
-  console.error('Missing .output/public. Run the build first.');
+  console.error('Missing dist/client. Run the build first.');
   process.exit(1);
 }
 
-function getEntry(entries, matcher) {
-  const matches = entries.filter((file) => matcher(file));
-  return matches.sort()[0] || '';
+const shellFile = path.join(outDir, '_shell.html');
+
+function ensureFile(filePath, content) {
+  fs.writeFileSync(filePath, content);
 }
 
-let jsEntry = '';
-let cssEntry = '';
+if (fs.existsSync(shellFile)) {
+  const shellHtml = fs.readFileSync(shellFile, 'utf8');
+  ensureFile(path.join(outDir, 'index.html'), shellHtml);
+} else {
+  const assetFiles = fs.existsSync(assetsDir)
+    ? fs.readdirSync(assetsDir).filter((file) => !file.startsWith('.'))
+    : [];
 
-if (fs.existsSync(assetsDir)) {
-  const assetFiles = fs.readdirSync(assetsDir).filter((file) => !file.startsWith('.'));
-  jsEntry = getEntry(assetFiles, (file) => file.endsWith('.js') && file.startsWith('index-'));
-  cssEntry = getEntry(assetFiles, (file) => file.endsWith('.css') && file.startsWith('styles-'));
-}
+  const jsEntry = assetFiles.find((file) => file.endsWith('.js') && file.startsWith('index-')) || 'index.js';
+  const cssEntry = assetFiles.find((file) => file.endsWith('.css') && file.startsWith('styles-')) || '';
 
-const pageShell = `<!doctype html>
+  const pageShell = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -32,14 +35,15 @@ const pageShell = `<!doctype html>
     <meta name="description" content="Da Craft Motion" />
     <title>Da Craft Motion</title>
     ${cssEntry ? `<link rel="stylesheet" href="./assets/${cssEntry}" />` : ''}
-    <script type="module" crossorigin src="./assets/${jsEntry || 'index.js'}"></script>
+    <script type="module" crossorigin src="./assets/${jsEntry}"></script>
   </head>
   <body>
     <div id="root"></div>
   </body>
 </html>`;
 
-fs.writeFileSync(path.join(outDir, 'index.html'), pageShell);
+  ensureFile(path.join(outDir, 'index.html'), pageShell);
+}
 
 const redirectHtml = `<!doctype html>
 <html lang="en">
@@ -54,8 +58,8 @@ const redirectHtml = `<!doctype html>
   </body>
 </html>`;
 
-fs.writeFileSync(path.join(outDir, '404.html'), redirectHtml);
-fs.writeFileSync(path.join(outDir, '.nojekyll'), '');
-fs.writeFileSync(path.join(outDir, '_redirects'), '/*    /index.html   200\n');
+ensureFile(path.join(outDir, '404.html'), redirectHtml);
+ensureFile(path.join(outDir, '.nojekyll'), '');
+ensureFile(path.join(outDir, '_redirects'), '/*    /index.html   200\n');
 
-console.log(`Prepared Pages artifact with js=${jsEntry || 'index.js'} css=${cssEntry || 'n/a'}`);
+console.log(`Prepared GitHub Pages artifact in ${outDir}`);
