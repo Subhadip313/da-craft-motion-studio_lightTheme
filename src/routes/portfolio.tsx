@@ -17,7 +17,7 @@ export const Route = createFileRoute("/portfolio")({
       { property: "og:description", content: "Fifteen recent projects and the results behind them." },
     ],
   }),
-  component: Portfolio;
+  component: Portfolio,
 });
 
 function Portfolio() {
